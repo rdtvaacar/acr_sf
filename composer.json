@@ -1,0 +1,18 @@
+{
+  "name": "acr/sf",
+  "description": "Shared Files",
+  "type": "laravel",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "acr",
+      "email": "acarbey15@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Acr\\sf\\": "src/"
+    }
+  }
+}
