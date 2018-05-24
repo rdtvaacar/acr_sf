@@ -26,7 +26,7 @@
                     <tbody>
                     @foreach($duyurular as $data)
                         <tr id="{{$data->id}}">
-                            <td width="1%" style=" {{!empty($data->duyuru_user->okundu)&&$data->duyuru_user->okundu==1 ? 'background-color:#00e600
+                            <td id="color_{{$data->id}}" width="1%" style=" {{!empty($data->duyuru_user->okundu)&&$data->duyuru_user->okundu==1 ? 'background-color:#00e600
 ':'background-color:#ff3333'}}"></td>
                             <td width="2%" align="center">
                                 {{$data->id}}
@@ -128,9 +128,10 @@
                 success: function (okundu) {
                     if (okundu == 1) {
                         $('#oku_' + id).prop("checked", true)
-
+                        $('#color_' + id).css("background-color",'#00e600')
                     } else {
                         $('#oku_' + id).prop("checked", false)
+                        $('#color_' + id).css("background-color",'#ff3333')
                     }
                 }
             });

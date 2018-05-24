@@ -6,6 +6,7 @@ use Acr\sf\Models\Acr_files_childs;
 use Acr\sf\Models\Duyuru;
 use Acr\sf\Models\Duyuru_user;
 use Acr\sf\Models\Files;
+use App\User;
 use DB, Input, Validator, Auth, Redirect, Session;
 use Illuminate\Http\Request;
 use Acr_fl;
@@ -13,6 +14,7 @@ use AcrMenu;
 use Image;
 use App\Http\Controllers\Controller;
 use Illuminate\Config\Repository;
+use App\Notifications\acr_sf;
 
 class SfController extends Controller
 {
@@ -110,14 +112,15 @@ class SfController extends Controller
         }
         $duyuru_user_model = new Duyuru_user();
         $user_ids          = $this->user_ids(6);
+        $user_model        = new User();
         foreach ($user_ids as $user_id) {
             $data_user[] = [
                 'user_id'   => $user_id,
                 'duyuru_id' => $duyuru_id
             ];
         }
-
         $duyuru_user_model->insert($data_user);
+        $request->user()->notify(new acr_sf);
         return redirect()->back()->with('msg', $this->basarili());
     }
 
